@@ -1,0 +1,63 @@
+
+
+
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.STD_LOGIC_ARITH.ALL;
+use IEEE.STD_LOGIC_UNSIGNED.ALL;
+
+
+ENTITY Clock_divider IS
+
+
+						GENERIC (display_resolution : INTEGER :=23;   -- counter to get to the lowest ferquncy 
+									display_counter: INTEGER :=11);		-- counter to get to 97KHz ferquincy 
+
+
+PORT (
+
+	clk_in : IN STD_LOGIC;
+	clr  :   IN STD_LOGIC;
+	
+	
+	
+	clock_divider_out_vector: OUT std_logic_vector(display_counter downto 0)
+
+
+    );
+END Clock_divider;
+
+
+ARCHITECTURE Behavioral_clock_divider OF Clock_divider IS
+
+
+SIGNAL counter:std_logic_vector(display_counter downto 0);
+
+
+
+
+
+		BEGIN
+	
+		
+
+		
+		clock_divider :PROCESS(clk_in,counter,clr )
+						
+			BEGIN 
+
+			IF (clk_in'event and clk_in='1') THEN -- starting the  counter 
+							counter<= counter+1;
+							
+	
+							
+
+			END IF;
+			END PROCESS clock_divider;
+		
+		clock_divider_out_vector <= counter;
+
+
+
+
+END Behavioral_clock_divider;
